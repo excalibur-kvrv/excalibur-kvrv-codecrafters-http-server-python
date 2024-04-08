@@ -39,7 +39,7 @@ def process_post(con, path, file_path, request_headers):
                 con.sendall(b"HTTP/1.1 201 Created" + (ENDLINE * 2).encode())
             else:
                 con.sendall(b"HTTP/1.1 400 Bad Request" + (ENDLINE * 2).encode())
-    print(request_headers)
+
 def server_connection(con, file_path):
     print("Recieved Connection From", con)
     with con:
@@ -60,7 +60,6 @@ def main():
     if len(arguments) >= 3:
         if arguments[1] == "--directory":
             file_path = arguments[2] if arguments[2].startswith("/tmp") else None
-            pass
     server_socket = socket.create_server(("localhost", 4221), reuse_port=True)
     print("Server Started")
     while True:
