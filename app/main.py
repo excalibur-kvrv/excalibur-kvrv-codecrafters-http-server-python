@@ -13,8 +13,14 @@ def main():
     with con:
         data = con.recv(4096)
         if data.endswith(b"\r\n\r\n"):
-            con.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
-            print("Sent data")
+            parsed_request = data.decode("utf-8")
+            parsed_request_lines = parsed_request.split("\r\n")
+            http_method, path, http_version = parsed_request_lines[0].split(" ")
+            print(http_method, path, http_version)
+            if path == "/":
+                con.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
+            else:
+                con.sendall(b"HTTP/1.1 404 Not Found")
         print(data, data.endswith(b"\r\n\r\n"))
 
 
