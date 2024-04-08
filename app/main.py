@@ -43,7 +43,7 @@ def main():
     file_path = None
     if len(arguments) >= 3:
         if arguments[1] == "--directory":
-            #file_path = arguments[2]
+            file_path = arguments[2] if arguments[2].startswith("/tmp") else None
             pass
     server_socket = socket.create_server(("localhost", 4221), reuse_port=True)
     print("Server Started")
