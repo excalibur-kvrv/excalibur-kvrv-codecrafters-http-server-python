@@ -20,7 +20,7 @@ def main():
             if path == "/":
                 con.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
             else:
-                con.sendall(b"HTTP/1.1 404 Not Found")
+                con.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
         print(data, data.endswith(b"\r\n\r\n"))
 
 
