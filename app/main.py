@@ -36,7 +36,7 @@ def process_post(con, path, file_path, request_headers):
             if not os.path.exists(os.path.join(file_path, file_name)):
                 with open(os.path.join(file_path, file_name), "wb") as file:
                     file.write(request_headers[-1].encode())
-                con.sendall(b"HTTP/1.1 201 OK\r\n")
+                con.sendall(b"HTTP/1.1 201 Created\r\n")
             else:
                 con.sendall(b"HTTP/1.1 400 Bad Request" + (ENDLINE * 2).encode())
     print(request_headers)
